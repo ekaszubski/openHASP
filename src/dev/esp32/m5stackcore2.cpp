@@ -5,12 +5,11 @@
 
 #if defined(M5STACK)
 
-#include "AXP192.h" // Power Mgmt
+#include "AXP.h" // Power Mgmt
 #include "dev/esp32/esp32.h"
 
-AXP192 Axp;
+AXP Axp;
 
-// AXP192 Axp;
 namespace dev {
 
 void M5StackCore2::init(void)
@@ -18,17 +17,16 @@ void M5StackCore2::init(void)
     Wire.begin(TOUCH_SDA, TOUCH_SCL, (uint32_t)I2C_TOUCH_FREQUENCY);
     Axp.begin();
 
-    Axp.SetCHGCurrent(AXP192::kCHG_100mA);
     Axp.SetLcdVoltage(2800);
     _backlight_power = true;
 
     Axp.SetBusPowerMode(0);
     Axp.SetCHGCurrent(AXP192::kCHG_190mA);
 
-    Axp.SetLDOEnable(3, true);
+    Axp.SetVibration(true);
     //    CoverScrollText("Motor Test", M5.Lcd.color565(SUCCE_COLOR));
     delay(150);
-    Axp.SetLDOEnable(3, false);
+    Axp.SetVibration(false);
 
     Axp.SetLed(1);
     //   CoverScrollText("LED Test", M5.Lcd.color565(SUCCE_COLOR));
@@ -82,7 +80,7 @@ void M5StackCore2::get_sensors(JsonDocument& doc)
 {
     Esp32Device::get_sensors(doc);
 
-    JsonObject sensor        = doc.createNestedObject(F("AXP192"));
+    JsonObject sensor        = doc.createNestedObject(F("AXP"));
     sensor[F("BattVoltage")] = Axp.GetBatVoltage();
     sensor[F("BattPower")]   = Axp.GetBatPower();
     // sensor[F("Batt%")]             = Axp.getBattPercentage();
