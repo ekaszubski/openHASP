@@ -30,10 +30,10 @@ void M5StackCore2::init(void)
     delay(150);
     Axp.SetVibration(false);
 
-    Axp.SetLed(1);
+    //Axp.SetLed(1);
     //   CoverScrollText("LED Test", M5.Lcd.color565(SUCCE_COLOR));
-    delay(100);
-    Axp.SetLed(0);
+    //delay(100);
+    //Axp.SetLed(0);
 
     // FastLED.addLeds<SK6812, LEDS_PIN>(ledsBuff, LEDS_NUM);
     // for(int i = 0; i < LEDS_NUM; i++) {
@@ -42,7 +42,7 @@ void M5StackCore2::init(void)
     // FastLED.show();
 
     //Axp.SetLDOVoltage(3, 3300);
-    Axp.SetLed(1);
+    //Axp.SetLed(1);
 }
 
 void M5StackCore2::set_backlight_level(uint8_t level)
