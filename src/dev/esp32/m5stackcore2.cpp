@@ -73,7 +73,7 @@ void M5StackCore2::update_backlight()
         uint16_t voltage = map(_backlight_level, 0, 255, 2500, 3300);
         Axp.SetLcdVoltage(voltage);
     } else {
-        Axp.SetDCVoltage(2, 2200);
+        Axp.SetLcdVoltage(0);
     }
     // Axp.SetDCDC3(_backlight_power); // LCD backlight
 }
